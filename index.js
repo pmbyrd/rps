@@ -1,20 +1,24 @@
 console.log("hello world")
 
-const choices = ["rock", "paper", "scissors"]
+const choicesArray = ["rock", "paper", "scissors"]
 
+const rock = document.querySelector(".rock")
+const paper = document.querySelector(".paper")
+const scissors = document.querySelector(".scissors")
+const choices = document.querySelector(".choices")
 let humanScore = 0
 let computerScore = 0
 
-function getComputerChoice(array = choices) {
-    let number = Math.floor(Math.random() * choices.length)
-    return choices[number]
+function getComputerChoice(array = choicesArray) {
+    let number = Math.floor(Math.random() * choicesArray.length)
+    return choicesArray[number]
 }
 
-function getHumanChoice() {
+function getHumanChoice(e) {
     // let choice = prompt("Please enter a choice of rock, paper or scissors")
-    let choice = "rock"
-    return choice.toLowerCase()
+    console.log(e.target)
 }
+
 
 function playRound(params) {
     let computerChoice = getComputerChoice()

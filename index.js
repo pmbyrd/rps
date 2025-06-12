@@ -13,71 +13,60 @@ function getComputerChoice(array = choicesArray) {
 
 function getHumanChoice(target) {
     if (target === "rock") {
-        console.log("rock")
         return "rock"
     } else if (target === "paper") {
-        console.log("paper")
         return "paper"
     } else if (target === "scissors") {
-        console.log("scissors")
         return "scissors"
     }
 }
 
 function updateDisplay (humanChoice, computerChoice) {
     let result
-
+    const playerScore = document.querySelector(".player-score")
+    const computerScoreSpan= document.querySelector(".computer-score")
     if (humanChoice === computerChoice) {
         result = "It's a draw"
-        console.log(result)
         resultDisplay.textContent = result
     } else if (humanChoice === "paper" && computerChoice === "rock") {
         result = "Paper covers rock, you win"
-        console.log(result)
         humanScore++
+        playerScore.textContent = humanScore
         resultDisplay.textContent = result
     } else if (humanChoice === "rock" && computerChoice === "paper") {
         result = "Paper covers rock, you lose"
         computerScore++
+        computerScoreSpan.textContent = computerScore
         resultDisplay.textContent = result
     } else if (humanChoice === "scissors" && computerChoice === "paper") {
         result = ("Scissors cuts paper, you win!")
-        console.log(result)
         humanScore++
+        playerScore.textContent = humanScore
         resultDisplay.textContent = result
     } else if (humanChoice === "paper" && computerChoice === "scissors") {
         result = ("Scissors cuts paper, you lose!")
-        console.log(result)
         computerScore++
+        computerScoreSpan.textContent = computerScore
         resultDisplay.textContent = result
     } else if (humanChoice === "rock" && computerChoice === "scissors") {
         result = ("Rock crushes scissors, you win!")
-        console.log(result)
         humanScore++
+        playerScore.textContent = humanScore
         resultDisplay.textContent = result
     } else if (humanChoice === "scissors" && computerChoice === "rock") {
         result = ("Rock crushes scissors, you lose!")
-        console.log(result)
         computerScore++
+        computerScoreSpan.textContent = computerScore
         resultDisplay.textContent = result
     }
-    return [computerScore, humanScore]
+    return [humanScore, computerScore]
 }
 
-function playRound(e) {
+function game(e) {
     let target = e.target.className
     let computerChoice = getComputerChoice()
     let humanChoice = getHumanChoice(target)
     updateDisplay(humanChoice, computerChoice)
-    console.log(computerChoice)
-    console.log(humanChoice)
-}
-
-function game() {
-    // call the play game
-    // first to five is the winner and the game wins
-    playRound()
-    console.log(humanScore, computerScore)
     if (humanScore === 5) {
         alert("Congradulations, you won!!!!!!!!!!!!!!!")
     } else if (computerScore === 5) {
@@ -85,4 +74,4 @@ function game() {
     }
 }
 
-choices.addEventListener("click", playRound)
+choices.addEventListener("click", game)
